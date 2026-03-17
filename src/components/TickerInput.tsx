@@ -21,10 +21,10 @@ export function TickerInput({ onAnalyze, isLoading, disabled }: TickerInputProps
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto mb-16 relative z-10 glass-card p-6 border-brand-500/30 shadow-[0_0_30px_rgba(34,197,94,0.1)]">
-      <div className="flex flex-col md:flex-row gap-4 items-center">
+    <form onSubmit={handleSubmit} className="w-full max-w-5xl mx-auto mb-16 relative z-10 glass-card p-6 border-brand-500/30 shadow-[0_0_30px_rgba(34,197,94,0.1)]">
+      <div className="flex flex-col lg:flex-row gap-4 items-center">
         
-        <div className="flex-1 relative w-full">
+        <div className="flex-1 relative w-full min-w-[280px]">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-slate-400" />
           </div>
@@ -38,7 +38,7 @@ export function TickerInput({ onAnalyze, isLoading, disabled }: TickerInputProps
           />
         </div>
 
-        <div className="flex-shrink-0 w-full md:w-auto overflow-x-auto flex gap-1 p-1 bg-slate-900/60 rounded-xl border border-slate-700/50">
+        <div className="flex-shrink-0 w-full lg:w-auto overflow-x-auto flex gap-1 p-1 bg-slate-900/60 rounded-xl border border-slate-700/50">
           {horizons.map(h => (
             <button
               key={h}
@@ -59,7 +59,7 @@ export function TickerInput({ onAnalyze, isLoading, disabled }: TickerInputProps
         <button
           type="submit"
           disabled={!ticker.trim() || isLoading || disabled}
-          className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-brand-600 to-teal-600 hover:from-brand-500 hover:to-teal-500 text-white rounded-xl font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 whitespace-nowrap"
+          className="w-full lg:w-auto px-8 py-4 bg-gradient-to-r from-brand-600 to-teal-600 hover:from-brand-500 hover:to-teal-500 text-white rounded-xl font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 whitespace-nowrap"
         >
           {isLoading ? (
             <><Loader2 className="animate-spin" size={20} /> Analyzing...</>
