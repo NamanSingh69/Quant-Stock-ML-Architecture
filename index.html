@@ -1,152 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zerodha Live Trading Engine Showcase</title>
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 900px;
-      padding: 40px;
-      background: #1e293b;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      border: 1px solid #334155;
-      margin: 40px 10px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    h1 {
-      color: #f59e0b;
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-    }
-
-    p.subtitle {
-      color: #cbd5e1;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 0.85rem;
-      font-weight: bold;
-      background-color: #d97706;
-      color: #fff;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .card {
-      text-align: left;
-      background: #0f172a;
-      padding: 25px;
-      border-radius: 8px;
-      border-top: 4px solid #f59e0b;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .card h3 {
-      color: #fbbf24;
-      margin-top: 0;
-      font-size: 1.3rem;
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 10px;
-    }
-
-    .card p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .mermaid-container {
-      margin-top: 40px;
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-  </style>
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true, theme: 'default' });
-  </script>
-</head>
-
-<body>
-  <div class="container">
-    <span class="badge">LIVE EXECUTION ENGINE</span>
-    <h1>Zerodha Trading Integration</h1>
-    <p class="subtitle">Architecture of an automated algorithmic bridging layer that reconciles offline quantitative
-      signals with live brokerage portfolios via the Zerodha KiteConnect API.</p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>1. KiteConnect Integration</h3>
-        <p>A direct OAuth gateway to the Zerodha Kite API utilizing the <code>kiteconnect</code> Python client. It
-          continuously authenticates and fetches live market status, holdings, and intraday positions arrays.</p>
-      </div>
-      <div class="card">
-        <h3>2. Live State Reconciliation</h3>
-        <p>Matches real-time traded instrument tokens against offline machine learning output stored in
-          <code>trading_signals.csv</code>. The engine calculates realized and unrealized P/L by reconciling API-held
-          quantities against locally derived target exposures.</p>
-      </div>
-      <div class="card">
-        <h3>3. Real-Time Price Polling</h3>
-        <p>Executes lightweight JSON requests to <code>kite.quote()</code> to fetch real-time bid/ask snapshots for
-          dynamic mark-to-market valuations, bypassing slow historical data endpoints when live trading is active.</p>
-      </div>
-      <div class="card">
-        <h3>4. Fallback Data Pipeline</h3>
-        <p>Implements an offline fallback mechanism: if the KiteConnect API rate limits are hit or the live ticker
-          socket drops, the system gracefully falls back to querying the latest Yahoo Finance datasets to estimate net
-          asset value.</p>
-      </div>
-    </div>
-
-    <div class="mermaid-container">
-      <div class="mermaid">
-        flowchart TD
-        A[Offline ML Signals CSV] --> B[Trading Engine Core]
-        C[Zerodha KiteConnect API] -->|Holdings & Positions| B
-        C -->|Live Quotes| B
-        B --> D{State Reconciliation}
-        D -->|Delta > Threshold| E[Order Execution Queue]
-        D -->|Hold| F[Update P/L Dashboard]
-        G[Yahoo Finance Fallback] -.->|API Down| B
-      </div>
-    </div>
-  </div>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quant & ML Architecture Dashboard</title>
+    
+    <!-- PWA & SEO -->
+    <meta name="description" content="AI-powered pipeline merging real-time Quant analysis with ML-driven stock return predictions." />
+    <meta name="theme-color" content="#0f172a" />
+    
+    <!-- Brand Icon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  </head>
+  <body class="bg-[#020617] text-slate-100 antialiased selection:bg-brand-500/30">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
