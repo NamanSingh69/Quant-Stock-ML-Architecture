@@ -119,12 +119,17 @@ export default function App() {
 
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start mb-12 w-full gap-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(34,197,94,0.1)]">
-            <LayoutDashboard size={16} />
-            Quant & ML Architecture
+          <div className="flex flex-col gap-3 relative z-20">
+            <div className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(34,197,94,0.1)]">
+              <LayoutDashboard size={16} />
+              Quant & ML Architecture
+            </div>
+            <a href="/architecture.html" target="_blank" rel="noopener noreferrer" className="text-xs text-brand-400/80 hover:text-brand-400 transition-colors underline decoration-brand-500/30 underline-offset-4 pl-2">
+              View Zerodha API Case Study & Architecture Design →
+            </a>
           </div>
           
-          <div className="flex flex-col items-end gap-2">
+          <div className="flex flex-col items-end gap-2 relative z-20">
             <button
               onClick={toggleMode}
               disabled={status === 'loading'}
